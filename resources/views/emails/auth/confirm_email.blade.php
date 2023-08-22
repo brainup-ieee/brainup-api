@@ -1,5 +1,6 @@
 <?php 
   $token = $data['token'];
+  $code = $data['code'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,8 +22,10 @@
       <h1 style="  font-size: 24px;
       margin: 0 0 20px;
       text-align: center;">You have Requested to confirm your email</h1>
-        <p style=" margin: 0 0 20px;">Please click the button below to confirm your email</p>
+      <p style=" margin: 0 0 20px;">Your Confirmation code is : {{$code}}</p>
+        <p style=" margin: 0 0 20px;">or click the button below to confirm your email</p>
         <a href="http://192.168.1.12:8080/auth/confirm-email/{{$token}}" style=" display: inline-block">Confirm Email</a>
+        <p>Link will be expired in 15mins.</p>
       <p style=" margin: 0 0 20px;">brainup Team</p>
     </div>
   </body>

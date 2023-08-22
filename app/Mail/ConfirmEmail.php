@@ -17,10 +17,12 @@ class ConfirmEmail extends Mailable
      * Create a new message instance.
      */
     private $token;
-    public function __construct($token)
+    private $code;
+    public function __construct($token,$code)
     {
         //
         $this->token = $token;
+        $this->code = $code;
     }
 
     /**
@@ -42,7 +44,8 @@ class ConfirmEmail extends Mailable
             view: 'emails.auth.confirm_email',
             with: [
                 'data' => [
-                    'token' => $this->token
+                    'token' => $this->token,
+                    'code' => $this->code,
                 ],
             ],
         );

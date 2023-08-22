@@ -1,5 +1,6 @@
 <?php 
   $token = $data['token'];
+  $code = $data['code'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,7 +22,8 @@
       <h1 style="  font-size: 24px;
       margin: 0 0 20px;
       text-align: center;">You have Requested to reset your password</h1>
-        <p style=" margin: 0 0 20px;">Please click the button below to reset your password</p>
+        <p style=" margin: 0 0 20px;">Your Reset Password code is : {{$code}}</p>
+        <p style=" margin: 0 0 20px;">or click the button below to reset your password</p>
         <a href="http://192.168.1.12:8080/auth/reset-password/{{$token}}" style=" display: inline-block">Reset Password</a>
         <p>Link will be expired in 15mins.</p>
       <p style=" margin: 0 0 20px;">brainup Team</p>

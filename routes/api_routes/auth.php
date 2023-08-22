@@ -12,9 +12,11 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
     // //Reset password route [Verify token]
     Route::get('/reset-password/{token}', [AuthController::class, 'verifyresetPassword']);
+    Route::post('/reset-password/verify-code', [AuthController::class, 'verifyresetPasswordCode']);
     // //Reset password route [Update password]
     Route::post('/reset-password', [AuthController::class, 'resetPassword']);
     // //Confirm email route
     Route::post('/confirm-email', [AuthController::class, 'confirmEmail']);
     Route::get('/confirm-email/{token}', [AuthController::class, 'verifyConfirmEmail']);
+    Route::post('/confirm-email/verify-code', [AuthController::class, 'verifyConfirmEmailCode']);
 });

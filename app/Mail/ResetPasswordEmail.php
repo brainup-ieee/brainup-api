@@ -17,10 +17,12 @@ class ResetPasswordEmail extends Mailable
      * Create a new message instance.
      */
     private $token;
-    public function __construct($token)
+    private $code;
+    public function __construct($token,$code)
     {
         //
         $this->token = $token;
+        $this->code = $code;
     }
 
     /**
@@ -42,7 +44,8 @@ class ResetPasswordEmail extends Mailable
             view: 'emails.auth.reset_password',
             with: [
                 'data' => [
-                    'token' => $this->token
+                    'token' => $this->token,
+                    'code' => $this->code,
                 ],
             ],
         );
