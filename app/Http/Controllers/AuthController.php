@@ -131,7 +131,7 @@ class AuthController extends Controller
             if ($diff > 900) {
                 return response()->json(['status' => 'failed', 'message' => 'Code expired!']);
             }
-            return response()->json(['status' => 'success']);
+            return response()->json(['status' => 'success', 'token' => DB::table('password_reset_tokens')->where('code', $code)->first()->token]);
         } else {
             return response()->json(['status' => 'failed', 'message' => 'Invalid Code!']);
         }
