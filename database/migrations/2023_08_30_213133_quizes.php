@@ -22,7 +22,7 @@ return new class extends Migration
             $table->boolean('active')->default(false);
             $table->boolean('shuffle_questions')->default(false);
             $table->boolean('instant_results')->default(false);
-            $table->intger('results_pdf')->default(0); //1 send once after quiz & Send when teacher  disactiv
+            $table->integer('results_pdf')->default(0); //1 send once after quiz & Send when teacher  disactiv
         });
         // Models
         Schema::create('models', function (Blueprint $table) {
