@@ -10,5 +10,11 @@ Route::prefix('classrooms/teacher')->middleware(['auth:sanctum'])->group(functio
     Route::get('/get', [ClassroomController::class, 'get']);
     // Get classroom
     Route::get('/get/{id}', [ClassroomController::class, 'getById']);
+    // Delete classroom
+
+    // Approve request
+    Route::post('/approve', [ClassroomController::class, 'approveRequest']);
+    // Reject request
+    Route::post('/reject', [ClassroomController::class, 'rejectRequest']);
 
  });

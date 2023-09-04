@@ -69,6 +69,61 @@ class ClassroomController extends Controller
             'message' => 'Classroom not found'
         ]);
     }
+    public static function approveRequest(request $request){
+        $request_id = $request->request_id;
+        $classroom_id = DB::table('requests')->where('id', $request_id)->first(['classroom_id']);
+        if(!$classroom_id){
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Request not found'
+            ]);
+        }
+        $classroom_id = $classroom_id->classroom_id;
+        $user_id = auth()->user()->id;
+        $classroom = Classroom::where('teacher_id', $user_id)->where('id', $classroom_id)->first(['id']);
+        $student_id = DB::table('requests')->where('id', $request_id)->first(['user_id'])->user_id;
+        if ($classroom) {
+            DB::table('classrooms_users')->insert([
+                'classroom_id' => $classroom_id,
+                'user_id' => $student_id,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+            DB::table('requests')->where('id', $request_id)->delete();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Request approved'
+            ]);
+        }
+        return response()->json([
+            'status' => 'failed',
+            'message' => 'Request is invalid'
+        ]);
+    }
+    public static function rejectRequest(request $request){
+        $request_id = $request->request_id;
+        $classroom_id = DB::table('requests')->where('id', $request_id)->first(['classroom_id']);
+        if(!$classroom_id){
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Request not found'
+            ]);
+        }
+        $classroom_id = $classroom_id->classroom_id;
+        $user_id = auth()->user()->id;
+        $classroom = Classroom::where('teacher_id', $user_id)->where('id', $classroom_id)->first(['id']);
+        if ($classroom) {
+            DB::table('requests')->where('id', $request_id)->delete();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Request rejected'
+            ]);
+        }
+        return response()->json([
+            'status' => 'failed',
+            'message' => 'Request is invalid'
+        ]);
+    }
     //Students
     public static function join(Request $request)
     {
