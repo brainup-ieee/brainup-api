@@ -52,7 +52,7 @@ class ClassroomController extends Controller
             $requests = DB::table('requests')
                 ->join('users', 'users.id', '=', 'requests.user_id')
                 ->where('requests.classroom_id', $id)
-                ->get(['users.id', 'users.name']);
+                ->get(['requests.id', 'users.name']);
             $classroom->requests = $requests;
             // Get announcements
             $announcments = DB::table('announcments')
