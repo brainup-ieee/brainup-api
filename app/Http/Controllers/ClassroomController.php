@@ -183,4 +183,18 @@ class ClassroomController extends Controller
             'message' => 'Request sent'
         ]);
     }
+    // Get Classrooms
+    public static function S_get(){
+        $user_id = auth()->user()->id;
+        //Get classrooms [id/name/name of teacher where classroom belongs to]
+        $classrooms = DB::table('classrooms_users')
+            ->join('classrooms', 'classrooms.id', '=', 'classrooms_users.classroom_id')
+            ->join('users', 'users.id', '=', 'classrooms.teacher_id')
+            ->where('classrooms_users.user_id', $user_id)
+            ->get(['classrooms.id', 'classrooms.name', 'users.name as teacher_name']);
+        return response()->json([
+            'status' => 'success',
+            'classrooms' => $classrooms
+        ]);
+    }
 }

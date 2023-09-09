@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClassroomController;
+use App\Http\Controllers\QuizController;
 
 Route::prefix('classrooms/teacher')->middleware(['auth:sanctum'])->group(function () {
     // Create classroom
@@ -16,5 +17,11 @@ Route::prefix('classrooms/teacher')->middleware(['auth:sanctum'])->group(functio
     Route::post('/approve', [ClassroomController::class, 'approveRequest']);
     // Reject request
     Route::post('/reject', [ClassroomController::class, 'rejectRequest']);
-
+ });
+ // Quizzes
+ Route::prefix('quizes/teacher')->middleware(['auth:sanctum'])->group(function(){
+    // Create quiz
+    Route::post('/create', [QuizController::class, 'create']);
+    // Get quizzes
+    Route::get('/get', [QuizController::class, 'get']);
  });
