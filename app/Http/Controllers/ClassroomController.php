@@ -37,6 +37,24 @@ class ClassroomController extends Controller
             'classrooms' => $classrooms
         ]);
     }
+    public static function delete($id){
+        $user_id = auth()->user()->id;
+        $classroom = Classroom::where('teacher_id', $user_id)->where('id', $id)->first(['id']);
+        if($classroom){
+            // DB::table('classrooms_users')->where('classroom_id', $id)->delete();
+            // DB::table('requests')->where('classroom_id', $id)->delete();
+            // DB::table('announcments')->where('classroom_id', $id)->delete();
+            DB::table('classrooms')->where('id', $id)->delete();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Classroom deleted'
+            ]);
+        }
+        return response()->json([
+            'status' => 'failed',
+            'message' => 'Classroom not found'
+        ]);
+    }
     public static function getById($id)
     {
         $user_id = auth()->user()->id;

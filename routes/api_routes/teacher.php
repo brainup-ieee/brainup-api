@@ -13,7 +13,7 @@ Route::prefix('classrooms/teacher')->middleware(['auth:sanctum'])->group(functio
     // Get classroom
     Route::get('/get/{id}', [ClassroomController::class, 'getById']);
     // Delete classroom
-
+    Route::delete('/delete/{id}', [ClassroomController::class, 'delete']);
     // Approve request
     Route::post('/approve', [ClassroomController::class, 'approveRequest']);
     // Reject request
