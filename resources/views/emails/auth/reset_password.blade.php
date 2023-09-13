@@ -103,7 +103,7 @@
 <table border="0" cellpadding="5" cellspacing="0" class="image_block block-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 <tr>
 <td class="pad">
-<div align="center" class="alignment" style="line-height:10px"><img src="bb5d7602-eda4-47b3-ae96-6716753641f7.png" style="display: block; height: auto; border: 0; max-width: 103px; width: 100%;" width="103"/></div>
+<div align="center" class="alignment" style="line-height:10px"><img src="https://i.ibb.co/JK77BmJ/bb5d7602-eda4-47b3-ae96-6716753641f7.png" style="display: block; height: auto; border: 0; max-width: 103px; width: 100%;" width="103"/></div>
 </td>
 </tr>
 </table>
