@@ -54,7 +54,7 @@ class AuthController extends Controller
             'created_at' => now()
         ]);
         try {
-            Mail::to($request->email)->send(new WelcomeEmail($request->name));
+         //   Mail::to($request->email)->send(new WelcomeEmail($request->name));
             Mail::to($request->email)->send(new ConfirmEmail($token, $code));
         } catch (\Throwable $th) {
             //throw $th;
