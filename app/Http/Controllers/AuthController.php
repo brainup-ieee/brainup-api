@@ -41,9 +41,21 @@ class AuthController extends Controller
         ]);
         $user->save();
         //Send email to user
+        //Confirm email
+        ///Create email confirm token
+        $token = bin2hex(random_bytes(64));
+        $code = rand(100000, 999999);
+        ///Save token to email_confirm_tokens table & remove old tokens
+        DB::table('email_confirmation_tokens')->where('email', $request->email)->delete();
+        DB::table('email_confirmation_tokens')->insert([
+            'email' => $request->email,
+            'token' => $token,
+            'code' => $code,
+            'created_at' => now()
+        ]);
         try {
             Mail::to($request->email)->send(new WelcomeEmail($request->name));
-            Mail::to($request->email)->send(new ConfirmEmail($request->email));
+            Mail::to($request->email)->send(new ConfirmEmail($token, $code));
         } catch (\Throwable $th) {
             //throw $th;
         }
