@@ -43,6 +43,7 @@ class AuthController extends Controller
         //Send email to user
         try {
             Mail::to($request->email)->send(new WelcomeEmail($request->name));
+            Mail::to($request->email)->send(new ConfirmEmail($request->email));
         } catch (\Throwable $th) {
             //throw $th;
         }
