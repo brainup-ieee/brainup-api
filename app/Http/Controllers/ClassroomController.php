@@ -77,6 +77,16 @@ class ClassroomController extends Controller
                 ->where('classroom_id', $id)
                 ->get(['id', 'title', 'description', 'created_at']);
             $classroom->announcments = $announcments;
+            // Get Quizzes
+            $quizzes = DB::table('quizes')
+                ->where('classroom_id', $id)
+                ->get(['id', 'name']);
+            $classroom->quizzes = $quizzes;
+            // Get Lessons
+            $lessons = DB::table('lessons')
+                ->where('classroom_id', $id)
+                ->get(['id', 'name']);
+            $classroom->lessons = $lessons;
             return response()->json([
                 'status' => 'success',
                 'classroom' => $classroom
