@@ -54,7 +54,9 @@ class AuthController extends Controller
             'created_at' => now()
         ]);
         try {
-         //   Mail::to($request->email)->send(new WelcomeEmail($request->name));
+            if($request->user_type == 'teacher'){
+                Mail::to($request->email)->send(new WelcomeEmail());
+            }
             Mail::to($request->email)->send(new ConfirmEmail($token, $code));
         } catch (\Throwable $th) {
             //throw $th;

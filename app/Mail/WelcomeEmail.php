@@ -16,11 +16,10 @@ class WelcomeEmail extends Mailable
     /**
      * Create a new message instance.
      */
-    private $name;
-    public function __construct($name)
+    public function __construct()
     {
         //
-        $this->name = $name;
+        
     }
 
     /**
@@ -39,12 +38,7 @@ class WelcomeEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.auth.welcome',
-            with: [
-                'data' => [
-                    'name' => $this->name
-                ],
-            ],
+            view: 'emails.auth.welcome'
         );
     }
 
