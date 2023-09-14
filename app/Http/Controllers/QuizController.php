@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Quiz;
 use Illuminate\Support\Facades\DB;
+//QuizAdded Mail
+use Illuminate\Support\Facades\Mail;
+use App\Mail\QuizAdded;
+
 
 class QuizController extends Controller
 {
@@ -73,8 +77,16 @@ class QuizController extends Controller
                     ]);
                 }
             }
-
         }
+        //Send Mail if quiz is active
+        if($active == 1){
+            $students = DB::table('classroom_users')->where('classroom_id', $classroom_id)->get();
+            foreach($students as $student){
+                $student_email = DB::table('users')->where('id', $student->user_id)->first(['email'])->email;
+                Mail::to($student_email)->send(new QuizAdded());
+            }
+        }
+      
         return response()->json([
             'status' => 'success',
             'message' => 'Quiz created successfully'
