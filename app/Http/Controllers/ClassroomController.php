@@ -80,7 +80,7 @@ class ClassroomController extends Controller
             // Get Quizzes
             $quizzes = DB::table('quizes')
                 ->where('classroom_id', $id)
-                ->get(['id', 'name']);
+                ->get(['id']);
             $classroom->quizzes = $quizzes;
             // Get Lessons
             $lessons = DB::table('lessons')
