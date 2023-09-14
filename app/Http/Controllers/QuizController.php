@@ -80,7 +80,7 @@ class QuizController extends Controller
         }
         //Send Mail if quiz is active
         if($active == 1){
-            $students = DB::table('classroom_users')->where('classroom_id', $classroom_id)->get();
+            $students = DB::table('classrooms_users')->where('classroom_id', $classroom_id)->get();
             foreach($students as $student){
                 $student_email = DB::table('users')->where('id', $student->user_id)->first(['email'])->email;
                 Mail::to($student_email)->send(new QuizAdded());
