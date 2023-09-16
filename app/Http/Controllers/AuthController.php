@@ -224,7 +224,7 @@ class AuthController extends Controller
             DB::table('users')->where('email', $email)->update([
                 'email_verified_at' => now()
             ]);
-            return response()->json(['status' => 'success']);
+            return response()->json(['status' => 'success','user_type' => DB::table('users')->where('email', $email)->first()->{'user-type'}]);
         } else {
             return response()->json(['status' => 'failed', 'message' => 'Invalid token!']);
         }
