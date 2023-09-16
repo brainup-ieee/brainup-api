@@ -103,6 +103,7 @@ class QuizController extends Controller
         //attemped
         foreach($quizzes as $quiz){
             $quiz->attemped = 2; //static
+            $quiz->title = 'Static Electricity';
         }
 
        return response()->json([
